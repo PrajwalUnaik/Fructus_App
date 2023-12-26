@@ -20,10 +20,11 @@ struct FruitHeaderView: View {
                 .scaledToFit()
                 .shadow(color: Color(red: 0, green: 0, blue: 0), radius: 8 , x: 6, y: 8)
                 .padding(.vertical ,20)
+                .scaleEffect(isAnimating ? 1.0 : 0.6)
         }
         .frame(height: 440)
-        onAppear(){
-            withAnimation(.easeOut(duration: 1))
+        .onAppear(){
+            withAnimation(.easeOut(duration: 0.5))
             {
                 isAnimating = true
             }
