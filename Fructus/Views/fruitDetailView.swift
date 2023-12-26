@@ -8,11 +8,49 @@
 import SwiftUI
 
 struct fruitDetailView: View {
+    var fruit:Fruit
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ScrollView(.vertical ,showsIndicators: false){
+                VStack(alignment: .center , spacing: 20) {
+                    VStack(alignment: .leading , spacing: 20)
+                    {
+                        Text(fruit.title)
+                            .font(.largeTitle)
+                            .fontWeight(.heavy)
+                            .foregroundColor(fruit.gradientColors[1])
+                        //Headline
+                        
+                        Text(fruit.headline)
+                            .font(.headline)
+                            .multilineTextAlignment(.leading)
+                        
+                        //Nutrients
+                        
+                        
+                        //Subheading
+                        Text("Learn more about \(fruit.title) ".uppercased())
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .foregroundStyle(fruit.gradientColors[1])
+                        
+                        
+                        //Description
+                        
+                        Text(fruit.description)
+                            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+                        
+                        
+                        
+                    }//VSTACK
+                    .padding(.horizontal,20)
+                    .frame(maxWidth: 640,alignment: .center)
+                }//VSTACk
+            }//SCROLL
+        }//NAVIAGTION
     }
 }
 
 #Preview {
-    fruitDetailView()
+    fruitDetailView(fruit: fruitsData[0])
 }
