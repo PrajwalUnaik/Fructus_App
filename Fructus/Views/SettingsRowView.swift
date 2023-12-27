@@ -1,18 +1,48 @@
-//
-//  SettingsRowView.swift
-//  Fructus
-//
-//  Created by Prajwal U on 27/12/23.
-//
 
 import SwiftUI
 
 struct SettingsRowView: View {
+    // MARK: - PROPERTIES
+    
+    var name: String
+    var content: String? = nil
+    var linkLabel: String? = nil
+    var linkDestination: String? = nil
+    
+    // MARK: - BODY
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Divider().padding(.vertical, 4)
+            
+            HStack {
+                Text(name).foregroundColor(Color.gray)
+                Spacer()
+                if (content != nil) {
+                    Text(content!)
+                }
+                else if (linkLabel != nil
+                         &&
+                         linkDestination != nil)
+                {
+                    Link(linkLabel!, destination : URL(string: "https://\(linkDestination!)")!)
+                    Image(systemName: "arrow.up.right.square").foregroundColor(.pink)
+                }
+                else {
+                    EmptyView()
+                }
+            }
+        }
     }
 }
 
-#Preview {
-    SettingsRowView()
+// MARK: - PREVIEW
+
+struct SettingsRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            //SettingsRowView(name: "Developer", content: "John / Jane")
+            SettingsRowView(name: "Website", linkLabel: "SwiftUI Masterclass", linkDestination: "swiftuimasterclass.com")
+        }
+    }
 }
